@@ -9,6 +9,54 @@ class StackUnderFlowError(Exception):
     def __str__(self):
         return repr(self.value)
 
+class StackWithMax:
+    data_stack = None
+    max_stack = None
+
+    #constructor
+    def __init__(self, capacity):
+        self.data_stack = Stack(capacity)
+        self.max_stack = Stack(capacity)
+
+    def push(self, item):
+        if self.data_stack.isFull():
+            raise OverflowError("Stack is full")
+
+        if self.max_stack.isEmpty() or item >= self.max_stack.top():
+            self.max_stack.push(item)
+        self.data_stack.push(item)
+
+    def pop(self):
+        if self.data_stack.isEmpty():
+            raise StackUnderFlowError("Stack is empty")
+
+        popped = self.data_stack.pop()
+        if popped == self.max_stack.top():
+            self.max_stack.pop()
+        return popped
+
+    def length(self):
+        return self.data_stack.length()
+
+    def top(self):
+        return self.data_stack.top()
+
+    def max(self):
+        return self.max_stack.top()
+
+    def isEmpty(self):
+        return self.data_stack.isEmpty()
+
+    def isFull(self):
+        return self.data_stack.isFull()
+
+    def capacity(self):
+        return self.data_stack.capacity()
+
+    def clear(self):
+        self.data_stack.clear()
+        self.max_stack.clear()
+
 class Stack:
 
     # Variables
@@ -58,6 +106,52 @@ class Stack:
 
 # Tests
 import unittest
+
+class StackWithMaxUnitTests(unittest.TestCase):
+
+    def test_maxIsUpdatedAfterPush(self):
+        s = StackWithMax(3)
+        s.push(5)
+        self.assertEqual(5, s.max())
+        s.push(12)
+        self.assertEqual(12, s.max())
+        s.push(15)
+        self.assertEqual(15, s.max())
+
+    def test_maxIsKeptIfItemIsLessThanMaxIsInserted(self):
+        s = StackWithMax(3)
+        s.push(5)
+        self.assertEqual(5, s.max())
+        s.push(12)
+        self.assertEqual(12, s.max())
+        s.push(7)
+        self.assertEqual(12, s.max())
+
+    def test_maxIsRemovedAfterPop(self):
+        s = StackWithMax(3)
+        s.push(5)
+        self.assertEqual(5, s.max())
+        s.push(12)
+        self.assertEqual(12, s.max())
+        s.pop()
+        self.assertEqual(5, s.max())
+
+    def test_maxRaisesExceptionIfStackIsEmpty(self):
+        s = StackWithMax(3)
+        try:
+            max = s.max()
+        except StackUnderFlowError as inst:
+            self.assertEqual(type(inst), type(StackUnderFlowError("test")))
+
+    def test_duplicateMaxItemsNotRemovedAfterPopup(self):
+        s = StackWithMax(3)
+        s.push(5)
+        self.assertEqual(5, s.max())
+        s.push(5)
+        self.assertEqual(5, s.max())
+        s.pop()
+        self.assertEqual(5, s.max())
+
 
 class StackUnitTests(unittest.TestCase):
 
