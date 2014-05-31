@@ -25,12 +25,10 @@ def printList(head):
         return
 
     iterator = head
-
     while iterator:
         print("%d - " %iterator.value, end="")
         iterator = iterator.next
     print("")
-
 
 def merge(lists):
     if not lists:
@@ -52,6 +50,7 @@ def merge(lists):
 
         if current.next:
             heapq.heappush(heap, (current.next.value, current.next))
+
         iterator = iterator.next
 
     return result
