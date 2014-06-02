@@ -11,9 +11,7 @@ def reverseSentence(sentence):
     # Reverse all sentence
     reverse(sentenceList, 0, len(sentence) - 1)
 
-    index = 0
-    start = 0
-    end = 0
+    index, start, end = 0, 0 , 0
     while index < len(sentenceList):
         if sentenceList[index] == " ":
             end = index - 1
