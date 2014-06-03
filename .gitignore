@@ -213,3 +213,9 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+LinkedList/DeleteNode/.idea/.name
+LinkedList/DeleteNode/.idea/DeleteNode.iml
+*.xml
+Strings/IsAnagram/.idea/IsAnagram.iml
+*.name
+*.iml
