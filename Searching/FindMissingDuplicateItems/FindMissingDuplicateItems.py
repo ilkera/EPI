@@ -56,35 +56,6 @@ def find_duplicates_viaSet(list):
 
     return duplicates
 
-
-def isValid(list):
-    return True
-
-def get_possible_integer_count(low, mid):
-    pass
-
-# TODO
-def find_duplicates_Range_Between_1_And_N(list, maxValue):
-    if not list:
-        return []
-
-    # Check if list contains item less than 1 or greater than N >
-    if not IsValid(list):
-        raise Exception("Invalid array")
-
-    sorted_list = sorted(list)
-
-    low = 0
-    high = len(sorted_list) - 1
-
-    while low <= high:
-        mid = int(low + (high - low) / 2)
-
-        left = mid - low + 1
-        right = high - mid
-
-        number_of_possible_integers = get_possible_integer_count(low, mid)
-
 # Main program
 print("Find duplicates via sorting")
 print(find_duplicates_viaSorting([3, 1, 1, 3]))
