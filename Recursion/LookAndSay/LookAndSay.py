@@ -28,7 +28,3 @@ def lookAndSay(current_sequence, index, end):
 # Main program
 result = lookAndSay(["1"], 0, 7)
 print(result)
-
-
-
-
