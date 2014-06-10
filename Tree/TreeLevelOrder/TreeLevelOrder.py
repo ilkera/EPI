@@ -36,6 +36,33 @@ def printLevel(tree):
             current_level_count = next_level_count
             next_level_count = 0
 
+def printLevel_v2(tree):
+    if not tree:
+        return
+
+    queue = []
+    queue.append(tree)
+    queue.append(None)
+
+    while queue:
+        current_node = queue.pop(0)
+
+        if len(queue) == 0:
+            break
+
+        if not current_node:
+            queue.append(None)
+            print("")
+            continue
+
+        print("%d " %current_node.value, end="")
+
+        if current_node.left:
+            queue.append(current_node.left)
+
+        if current_node.right:
+            queue.append(current_node.right)
+
 # Find height
 def getHeight(tree):
     if not tree:
@@ -67,4 +94,6 @@ print("Iterative")
 printLevel(tree)
 print("Recursive")
 printLevel_recursive(tree)
+print("Iterative v2")
+printLevel_v2(tree)
 
